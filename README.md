@@ -12,15 +12,23 @@ A simple **Javascript** Hangman *(Pendu)* game with an *html/css* interface and 
 Your objective is to guess the secret word by finding one by one the letters that compose it, while making the minimum possible mistakes !
 
 ## 🖼Screenshots
-![Default screenshot](https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/preview.png)
-![Win screenshot](https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/win_preview.png)
-![Lose screenshot](https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/lose%20preview.png)
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/preview.png"></td>
+    <td><img src="https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/win_preview.png"></td>
+    <td><img src="https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/lose%20preview.png"></td>
+  </tr>
+</table>
 
 ## 📱Responsive
 This project is also fully responsive (except for the Apple watch 😔)
-![Computer](https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/pendu_macbook.png)
-![Tablet](https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/pendu_tablet.png)
-![Phone](https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/pendu_mobile.png)
+<table>
+  <tr>
+        <td><img src="https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/pendu_tablet.png"></td>
+    <td><img src="https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/pendu_macbook.png"></td>
+    <td><img src="https://raw.githubusercontent.com/Gersigno/Hangman-Javascript/main/resources/previews/pendu_mobile.png"></td>
+  </tr>
+</table>
 
 ## 🧰Technologies
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white) 
@@ -29,14 +37,14 @@ This project is also fully responsive (except for the Apple watch 😔)
 
 ![Visual Studio Code Logo](https://img.shields.io/badge/Visual%20Code-1.85-007ACC?logo=visualstudiocode) 
 
-## 📜Howto change the words list
+## 📜How to change the words list
 You can change the words list by rewriting the `dictionnaire` array variable inside the `scripts\dictionary.js` file.
 Like this:
 ```js
   var dictionnaire = [ "Word" , "Multiple words" , "Composed-Word", "Wow' BG Gersigno" ...];
 ```
 
-## 🛡️What's handled by the code? ?
+## 🛡️What's handled by the code?
 The code supports non-alphabetic characters (like `-`, `'`, *white spaces* etc..), theses characters will be shown anyway at the beginning of the game.
 Duplicated letters are also supported.
 
