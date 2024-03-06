@@ -1,3 +1,5 @@
+let root = document.documentElement; //get our css root element to be able to edit our css variables.
+
 var wordToGuess; //This variable is, as you guessed it, the word that our player will need to guess..
 
 var tries = 0; //This variable is used to check how many time our player picked a wrong letter
@@ -92,6 +94,7 @@ function BuildDefaultGuess() {
  * Build and update our hidden word on the player's UI
  */
 function UpdateUI() {
+  var element_wordToGuess = document.getElementById("WordToGuess")
   //Our initial step is to create a new empty variable that will store our new 'censored' word.
   var newString = "";
   //Then, we check for any revealed letters in our final word.
@@ -110,7 +113,7 @@ function UpdateUI() {
       newString += wordToGuess[letter];
     }
   }
-  document.getElementById("WordToGuess").innerHTML = newString;
+  element_wordToGuess.innerHTML = newString;
 }
 
 /**
@@ -126,8 +129,8 @@ function isLetterInWord(letter) {
   } else {
     //if the last letter pressed by our player if not in our final word, we increment our "tries" variable and we increase the red value of our background while updating the "pendu" picture
     tries++;
-    document.getElementById("pendu").src = "resources/p" + tries + ".png";
-    document.body.style.backgroundColor = "rgb(255," + (255 - tries * 42.5) + "," + (255 - tries * 42.5) + ")";
+    root.style.setProperty('--hangman-src', "url(\"../resources/p" + tries + ".png\")");
+    root.style.setProperty('--background-color', "rgb(255," + (255 - tries * ( 255 / TRIES_TO_LOSE )) + "," + (255 - tries * ( 255 / TRIES_TO_LOSE )) + ")");
     //Then, we check if the player has made too many attempts to continue playing, aka check if the player loses the game.
     if (tries >= TRIES_TO_LOSE) {
       //if it's the case, we can call our lose event..
