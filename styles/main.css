@@ -1,3 +1,8 @@
+:root {
+    --background-color: rgb(227,227,227);
+    --hangman-src: url("../resources/p0.png");
+}
+
 * {
     font-family: system-ui;
     border: 0;
@@ -10,7 +15,7 @@
 }
 body {
     height: 100vh;
-    background-color: #e3e3e3;
+    background-color: var(--background-color);
 }
 
 main {
@@ -71,6 +76,10 @@ button:hover {
     height: 20%;
 }
 
+#pendu {
+    content: var(--hangman-src);
+}
+
 /* Custom classes */
 
 .disabled {
@@ -92,4 +101,22 @@ button:hover {
     height: auto;
     visibility: collapse;
     font-weight: 600;
+}
+
+/* Events classes */ 
+
+.KeyboardEnabled {
+    pointer-events: all;
+}
+
+.KeyboardDisabled {
+    pointer-events: none;
+}
+
+.MessageVisible {
+    visibility: visible;
+}
+
+.MessageHidden {
+    visibility: collapse;
 }

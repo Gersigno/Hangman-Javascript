@@ -11,16 +11,25 @@ function Event_Loaded() {
  * This function will restart our game and pick up a new random word from our dictionary.
  */
 function Event_newWord() {
+
     updateKeyboard();
+
     wordToGuess = "";
     revealedLetters = [];
     tries = 0;
-    document.getElementById("pendu").src = "resources/p"+tries+".png";
-    document.body.style.backgroundColor = "rgb(227,227,227)"
-    document.getElementById("VirtualKeyboard").style.pointerEvents = "all";
+    var element_keyboard = document.getElementById("VirtualKeyboard");
+    var element_message = document.getElementById("message");
+
+    root.style.setProperty('--hangman-src', "url(\"../resources/p0.png\")");
+    root.style.setProperty('--background-color', "rgb(227,227,227)");
+    element_keyboard.classList.remove("KeyboardDisabled");
+    element_keyboard.classList.add("KeyboardEnabled");
+
     InitGame();
-    document.getElementById("message").innerHTML = "";
-    document.getElementById("message").style.visibility = "collapse"
+
+    element_message.innerHTML = "";
+    element_message.classList.remove("MessageVisible");
+    element_message.classList.add("MessageHidden");
 }
 
 /**
@@ -49,17 +58,27 @@ function Event_GuessNewLetter(letter) {
  * Event called when the player loses/runs out of attempts.
  */
 function Event_Lose() {
-    document.getElementById("VirtualKeyboard").style.pointerEvents = "none";
-    document.getElementById("message").innerHTML = "Perdu ! <br>Le mot était : <b>" + wordToGuess + "</b><br>Clique ici pour re-jouer";
-    document.getElementById("message").style.visibility = "visible"
+    var element_keyboard = document.getElementById("VirtualKeyboard");
+    var element_message = document.getElementById("message");
+
+    element_message.innerHTML = "Perdu ! <br>Le mot était : <b>" + wordToGuess + "</b><br>Clique ici pour re-jouer";
+    element_keyboard.classList.remove("KeyboardEnabled");
+    element_keyboard.classList.add("KeyboardDisabled");
+    element_message.classList.remove("MessageHidden");
+    element_message.classList.add("MessageVisible");
 }
 
 /**
  * Event called when the player has guessed successfully our secret word
  */
 function Event_Won() {
-    document.getElementById("VirtualKeyboard").style.pointerEvents = "none";
-    document.getElementById("message").innerHTML = "Bien joué ! <br>Tu as trouvé en <b>"+tries+"</b> essais!<br>Clique ici pour re-jouer";
-    document.body.style.backgroundColor = "rgb(0,125,0)"
-    document.getElementById("message").style.visibility = "visible"
+    var element_keyboard = document.getElementById("VirtualKeyboard");
+    var element_message = document.getElementById("message");
+
+    element_message.innerHTML = "Bien joué ! <br>Tu as trouvé en <b>"+tries+"</b> essais!<br>Clique ici pour re-jouer";
+    root.style.setProperty('--background-color', "rgb(0,125,0)");
+    element_keyboard.classList.remove("KeyboardEnabled");
+    element_keyboard.classList.add("KeyboardDisabled");
+    element_message.classList.remove("MessageHidden");
+    element_message.classList.add("MessageVisible");
 }
