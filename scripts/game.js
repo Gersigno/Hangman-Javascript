@@ -3,12 +3,15 @@ var wordToGuess; //This variable is, as you guessed it, the word that our player
 var tries = 0; //This variable is used to check how many time our player picked a wrong letter
 var difficulty = 1; //NEEDED to be between 1 and 3
 
-var revealedLetters = new Array(); 
+var revealedLetters = new Array(); //an empty array to fill with guessed letters
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const TRIES_TO_LOSE = 6;
-const HIDDEN_LETTER_CHAR = "*";
+const TRIES_TO_LOSE = 6; //The amount of attempts our player has before losing....
+const HIDDEN_LETTER_CHAR = "*"; //The character used to hide our letters
 
+/**
+ * Function called at the beginning of a new game.
+ */
 function InitGame() {
   //Collect a random word from our dictionary.
   wordToGuess = dictionnaire[Math.floor(Math.random() * dictionnaire.length)];
@@ -21,6 +24,9 @@ function InitGame() {
   UpdateUI();
 }
 
+/**
+ * Create/Update our virtual keyboard to hide already guessed letters present in our revealedLetters array.
+ */
 function updateKeyboard() {
   //We first need to remove all the keys from our virtual keyboard.
   const KeyboardParent = document.getElementById("VirtualKeyboard");
@@ -30,7 +36,7 @@ function updateKeyboard() {
     var newKey = document.createElement("button");
     newKey.innerText = ALPHABET[i];
     newKey.onclick = function (e) {
-      return Event_GuessNewLetter(e);
+      return Event_GuessNewLetter(this);
     };
     for (revealed in revealedLetters) {
       //We also need to check if the target letter of our key is revealed to disable it.
@@ -43,6 +49,9 @@ function updateKeyboard() {
   }
 }
 
+/**
+ * Build our revealedLetters array from our final word and the game's difficulty at the beginning of the game...
+ */
 function BuildDefaultGuess() {
   //We create an array of characters from our final word.
   var wordLetters = wordToGuess.toString().split("");
@@ -79,6 +88,9 @@ function BuildDefaultGuess() {
   }
 }
 
+/**
+ * Build and update our hidden word on the player's UI
+ */
 function UpdateUI() {
   //Our initial step is to create a new empty variable that will store our new 'censored' word.
   var newString = "";
@@ -101,6 +113,10 @@ function UpdateUI() {
   document.getElementById("WordToGuess").innerHTML = newString;
 }
 
+/**
+ * Check if our new letter is included in our final word and trigger the right event accordingly
+ * @param {*} letter Newly entered letter
+ */
 function isLetterInWord(letter) {
   var currentGuess = document.getElementById("WordToGuess").innerHTML;
   if (wordToGuess.includes(letter)) {
