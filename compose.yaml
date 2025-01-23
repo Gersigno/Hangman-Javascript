@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    image: php:8.2-apache
+    container_name: Hangman-JS
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
